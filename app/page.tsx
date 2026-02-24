@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { callAIAgent } from '@/lib/aiAgent'
 import { cn } from '@/lib/utils'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
@@ -11,36 +10,34 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Progress } from '@/components/ui/progress'
 import { Switch } from '@/components/ui/switch'
-import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import {
-  HiOutlineChartBar,
-  HiOutlineClipboardDocumentList,
-  HiOutlineCog6Tooth,
-  HiOutlineBolt,
-  HiOutlineExclamationTriangle,
-  HiOutlineCheckCircle,
-  HiOutlineClock,
-  HiOutlineArrowPath,
-  HiOutlinePaperAirplane,
-  HiOutlineChevronDown,
-  HiOutlineChevronRight,
-  HiOutlineMagnifyingGlass,
-  HiOutlineBars3,
-  HiOutlineXMark,
-  HiOutlineArrowLeft,
-  HiOutlineDocumentText,
-  HiOutlineShieldExclamation,
-  HiOutlineUserGroup,
-  HiOutlineCalendarDays,
-  HiOutlineSignal,
-  HiOutlineInformationCircle,
-  HiOutlineChevronUp,
-  HiOutlineSquares2X2,
-} from 'react-icons/hi2'
-import { FiSlack } from 'react-icons/fi'
+  BarChart3,
+  ClipboardList,
+  Settings,
+  Zap,
+  AlertTriangle,
+  CheckCircle2,
+  Clock,
+  RefreshCw,
+  Send,
+  ChevronDown,
+  ChevronRight,
+  Search,
+  Menu,
+  X,
+  ArrowLeft,
+  FileText,
+  ShieldAlert,
+  Users,
+  CalendarDays,
+  Signal,
+  Info,
+  ChevronUp,
+  LayoutGrid,
+  MessageSquare,
+} from 'lucide-react'
 
 // ============================================================
 // TYPES
@@ -311,7 +308,7 @@ function LoadingSkeleton({ progressMessage }: { progressMessage: string }) {
     <div className="space-y-6 p-6">
       <div className="flex items-center gap-3 mb-8">
         <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-          <HiOutlineArrowPath className="h-4 w-4 text-primary animate-spin" />
+          <RefreshCw className="h-4 w-4 text-primary animate-spin" />
         </div>
         <div>
           <p className="text-sm font-medium text-foreground">Generating Roadmap Update</p>
@@ -354,9 +351,9 @@ function StatusBanner({ type, message, onDismiss }: { type: 'success' | 'error' 
     info: 'bg-blue-50 border-blue-200 text-blue-800',
   }
   const icons = {
-    success: <HiOutlineCheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0" />,
-    error: <HiOutlineExclamationTriangle className="h-5 w-5 text-red-600 flex-shrink-0" />,
-    info: <HiOutlineInformationCircle className="h-5 w-5 text-blue-600 flex-shrink-0" />,
+    success: <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0" />,
+    error: <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0" />,
+    info: <Info className="h-5 w-5 text-blue-600 flex-shrink-0" />,
   }
   return (
     <div className={cn('flex items-start gap-3 p-4 rounded-[0.875rem] border', colors[type])}>
@@ -364,7 +361,7 @@ function StatusBanner({ type, message, onDismiss }: { type: 'success' | 'error' 
       <p className="text-sm flex-1">{message}</p>
       {onDismiss && (
         <button onClick={onDismiss} className="flex-shrink-0 hover:opacity-70 transition-opacity">
-          <HiOutlineXMark className="h-4 w-4" />
+          <X className="h-4 w-4" />
         </button>
       )}
     </div>
@@ -380,7 +377,7 @@ function AccordionSection({ title, icon, children, defaultOpen }: { title: strin
           <div className="h-8 w-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary">{icon}</div>
           <span className="font-medium text-sm text-foreground">{title}</span>
         </div>
-        {isOpen ? <HiOutlineChevronUp className="h-4 w-4 text-muted-foreground" /> : <HiOutlineChevronDown className="h-4 w-4 text-muted-foreground" />}
+        {isOpen ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
       </button>
       {isOpen && (
         <div className="px-5 pb-5 border-t border-border/50">
@@ -411,13 +408,13 @@ function EmptyState({ title, description, action, onAction }: { title: string; d
   return (
     <div className="flex flex-col items-center justify-center py-16 px-8 text-center">
       <div className="h-16 w-16 rounded-2xl bg-primary/5 flex items-center justify-center mb-6">
-        <HiOutlineDocumentText className="h-8 w-8 text-primary/40" />
+        <FileText className="h-8 w-8 text-primary/40" />
       </div>
       <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
       <p className="text-sm text-muted-foreground max-w-md mb-6 leading-relaxed">{description}</p>
       {action && onAction && (
         <Button onClick={onAction} className="rounded-xl">
-          <HiOutlineBolt className="h-4 w-4 mr-2" />
+          <Zap className="h-4 w-4 mr-2" />
           {action}
         </Button>
       )}
@@ -665,9 +662,9 @@ export default function Page() {
 
   // --- Navigation ---
   const navItems = [
-    { key: 'dashboard' as const, label: 'Dashboard', icon: <HiOutlineChartBar className="h-5 w-5" /> },
-    { key: 'history' as const, label: 'Update History', icon: <HiOutlineClipboardDocumentList className="h-5 w-5" /> },
-    { key: 'settings' as const, label: 'Settings', icon: <HiOutlineCog6Tooth className="h-5 w-5" /> },
+    { key: 'dashboard' as const, label: 'Dashboard', icon: <BarChart3 className="h-5 w-5" /> },
+    { key: 'history' as const, label: 'Update History', icon: <ClipboardList className="h-5 w-5" /> },
+    { key: 'settings' as const, label: 'Settings', icon: <Settings className="h-5 w-5" /> },
   ]
 
   // ============================================================
@@ -681,7 +678,7 @@ export default function Page() {
           {/* Logo */}
           <div className={cn('flex items-center gap-3 p-4 border-b border-border/50', !sidebarOpen && 'justify-center px-2')}>
             <div className="h-9 w-9 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-              <HiOutlineSquares2X2 className="h-5 w-5 text-primary-foreground" />
+              <LayoutGrid className="h-5 w-5 text-primary-foreground" />
             </div>
             {sidebarOpen && <span className="font-semibold text-sm tracking-tight text-foreground">ProductPulse</span>}
           </div>
@@ -731,7 +728,7 @@ export default function Page() {
         <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-3">
             <button onClick={() => setSidebarOpen(!sidebarOpen)} className="h-9 w-9 rounded-xl flex items-center justify-center hover:bg-accent transition-colors text-muted-foreground">
-              <HiOutlineBars3 className="h-5 w-5" />
+              <Menu className="h-5 w-5" />
             </button>
             <div>
               <h1 className="text-base font-semibold tracking-tight text-foreground">
@@ -777,17 +774,17 @@ export default function Page() {
               <p className="text-sm text-muted-foreground leading-relaxed mb-6">Track your lovable.dev project changes, analyze risks, and notify stakeholders in one click.</p>
             </div>
             <Button onClick={handleGenerateUpdate} disabled={loading} className="w-full rounded-xl h-11 text-sm font-medium">
-              <HiOutlineBolt className="h-4 w-4 mr-2" />
+              <Zap className="h-4 w-4 mr-2" />
               Generate Roadmap Update
             </Button>
           </div>
 
           {/* Stats */}
           <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <MetricCard label="Overall Progress" value={`${dashboardStats.completion}%`} icon={<HiOutlineChartBar className="h-5 w-5" />} accent="bg-blue-50 text-blue-600" />
-            <MetricCard label="Features" value={dashboardStats.featuresCount} icon={<HiOutlineSquares2X2 className="h-5 w-5" />} accent="bg-emerald-50 text-emerald-600" />
-            <MetricCard label="Risks" value={dashboardStats.risksCount} icon={<HiOutlineExclamationTriangle className="h-5 w-5" />} accent="bg-amber-50 text-amber-600" />
-            <MetricCard label="Overdue" value={dashboardStats.overdueItems} icon={<HiOutlineClock className="h-5 w-5" />} accent="bg-red-50 text-red-600" />
+            <MetricCard label="Overall Progress" value={`${dashboardStats.completion}%`} icon={<BarChart3 className="h-5 w-5" />} accent="bg-blue-50 text-blue-600" />
+            <MetricCard label="Features" value={dashboardStats.featuresCount} icon={<LayoutGrid className="h-5 w-5" />} accent="bg-emerald-50 text-emerald-600" />
+            <MetricCard label="Risks" value={dashboardStats.risksCount} icon={<AlertTriangle className="h-5 w-5" />} accent="bg-amber-50 text-amber-600" />
+            <MetricCard label="Overdue" value={dashboardStats.overdueItems} icon={<Clock className="h-5 w-5" />} accent="bg-red-50 text-red-600" />
           </div>
         </div>
 
@@ -820,7 +817,7 @@ export default function Page() {
             {displayUpdates.length > 0 && (
               <Button variant="ghost" size="sm" onClick={() => setCurrentScreen('history')} className="text-xs text-muted-foreground hover:text-foreground">
                 View all
-                <HiOutlineChevronRight className="h-3 w-3 ml-1" />
+                <ChevronRight className="h-3 w-3 ml-1" />
               </Button>
             )}
           </div>
@@ -835,7 +832,7 @@ export default function Page() {
                     <div className="flex items-center gap-2">
                       {update?.delivery_status && (
                         <Badge className={cn('text-xs', getStatusColor(update.delivery_status))}>
-                          <FiSlack className="h-3 w-3 mr-1" />
+                          <MessageSquare className="h-3 w-3 mr-1" />
                           Sent
                         </Badge>
                       )}
@@ -880,7 +877,7 @@ export default function Page() {
         {/* Top Buttons */}
         <div className="flex items-center justify-between">
           <Button variant="ghost" size="sm" onClick={() => { setCurrentScreen('dashboard'); setError(null); setSuccessMessage(null) }} className="text-sm text-muted-foreground">
-            <HiOutlineArrowLeft className="h-4 w-4 mr-1" />
+            <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Dashboard
           </Button>
           <div className="flex items-center gap-2">
@@ -919,7 +916,7 @@ export default function Page() {
         </div>
 
         {/* Accordion Sections */}
-        <AccordionSection title={`Features (${features.length})`} icon={<HiOutlineSquares2X2 className="h-4 w-4" />} defaultOpen>
+        <AccordionSection title={`Features (${features.length})`} icon={<LayoutGrid className="h-4 w-4" />} defaultOpen>
           {features.length === 0 ? (
             <p className="text-sm text-muted-foreground">No features reported in this update.</p>
           ) : (
@@ -945,7 +942,7 @@ export default function Page() {
           )}
         </AccordionSection>
 
-        <AccordionSection title={`Timeline Changes (${timelineChanges.length})`} icon={<HiOutlineClock className="h-4 w-4" />} defaultOpen={timelineChanges.length > 0}>
+        <AccordionSection title={`Timeline Changes (${timelineChanges.length})`} icon={<Clock className="h-4 w-4" />} defaultOpen={timelineChanges.length > 0}>
           {timelineChanges.length === 0 ? (
             <p className="text-sm text-muted-foreground">No timeline changes detected.</p>
           ) : (
@@ -974,7 +971,7 @@ export default function Page() {
           )}
         </AccordionSection>
 
-        <AccordionSection title={`Dependencies (${dependencies.length})`} icon={<HiOutlineArrowPath className="h-4 w-4" />}>
+        <AccordionSection title={`Dependencies (${dependencies.length})`} icon={<RefreshCw className="h-4 w-4" />}>
           {dependencies.length === 0 ? (
             <p className="text-sm text-muted-foreground">No dependencies tracked.</p>
           ) : (
@@ -984,7 +981,7 @@ export default function Page() {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2 text-sm">
                       <span className="font-medium text-foreground">{dep?.from_feature ?? '--'}</span>
-                      <HiOutlineChevronRight className="h-3 w-3 text-muted-foreground" />
+                      <ChevronRight className="h-3 w-3 text-muted-foreground" />
                       <span className="font-medium text-foreground">{dep?.to_feature ?? '--'}</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -998,7 +995,7 @@ export default function Page() {
           )}
         </AccordionSection>
 
-        <AccordionSection title={`Risk Indicators (${risks.length})`} icon={<HiOutlineShieldExclamation className="h-4 w-4" />} defaultOpen={risks.length > 0}>
+        <AccordionSection title={`Risk Indicators (${risks.length})`} icon={<ShieldAlert className="h-4 w-4" />} defaultOpen={risks.length > 0}>
           {risks.length === 0 ? (
             <p className="text-sm text-muted-foreground">No risk indicators identified.</p>
           ) : (
@@ -1007,7 +1004,7 @@ export default function Page() {
                 <div key={idx} className="bg-white/50 rounded-xl p-4 border border-border/50">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <HiOutlineExclamationTriangle className={cn('h-4 w-4', (risk?.severity ?? '').toLowerCase() === 'high' ? 'text-red-500' : (risk?.severity ?? '').toLowerCase() === 'medium' ? 'text-amber-500' : 'text-emerald-500')} />
+                      <AlertTriangle className={cn('h-4 w-4', (risk?.severity ?? '').toLowerCase() === 'high' ? 'text-red-500' : (risk?.severity ?? '').toLowerCase() === 'medium' ? 'text-amber-500' : 'text-emerald-500')} />
                       <span className="text-sm font-medium text-foreground">{risk?.title ?? 'Untitled Risk'}</span>
                     </div>
                     <Badge className={cn('text-xs', getSeverityColor(risk?.severity ?? ''))}>{risk?.severity ?? '--'}</Badge>
@@ -1025,7 +1022,7 @@ export default function Page() {
           )}
         </AccordionSection>
 
-        <AccordionSection title={`Action Items (${actionItems.length})`} icon={<HiOutlineCheckCircle className="h-4 w-4" />} defaultOpen>
+        <AccordionSection title={`Action Items (${actionItems.length})`} icon={<CheckCircle2 className="h-4 w-4" />} defaultOpen>
           {actionItems.length === 0 ? (
             <p className="text-sm text-muted-foreground">No action items in this update.</p>
           ) : (
@@ -1038,13 +1035,13 @@ export default function Page() {
                     <div className="flex items-center gap-2 mt-1 flex-wrap">
                       {item?.assignee && (
                         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-accent/50 px-2 py-0.5 rounded-full">
-                          <HiOutlineUserGroup className="h-3 w-3" />
+                          <Users className="h-3 w-3" />
                           {item.assignee}
                         </span>
                       )}
                       {item?.due_date && (
                         <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                          <HiOutlineCalendarDays className="h-3 w-3" />
+                          <CalendarDays className="h-3 w-3" />
                           {formatDate(item.due_date)}
                         </span>
                       )}
@@ -1061,7 +1058,7 @@ export default function Page() {
         <div className={cn(GLASS_CARD, 'p-6')}>
           <div className="flex items-center gap-3 mb-4">
             <div className="h-8 w-8 rounded-lg bg-primary/5 flex items-center justify-center">
-              <FiSlack className="h-4 w-4 text-primary" />
+              <MessageSquare className="h-4 w-4 text-primary" />
             </div>
             <div>
               <h3 className="text-sm font-semibold text-foreground">Send to Slack</h3>
@@ -1097,12 +1094,12 @@ export default function Page() {
             >
               {sendingReminder ? (
                 <>
-                  <HiOutlineArrowPath className="h-4 w-4 mr-2 animate-spin" />
+                  <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
                   Sending...
                 </>
               ) : (
                 <>
-                  <HiOutlinePaperAirplane className="h-4 w-4 mr-2" />
+                  <Send className="h-4 w-4 mr-2" />
                   Send Reminders
                 </>
               )}
@@ -1122,7 +1119,7 @@ export default function Page() {
       <div className="p-6 space-y-4">
         {/* Search */}
         <div className="relative">
-          <HiOutlineMagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search updates..."
             value={searchQuery}
@@ -1157,11 +1154,11 @@ export default function Page() {
                       <div className="flex items-center gap-2">
                         {update?.delivery_status && (
                           <Badge className="text-xs bg-emerald-100 text-emerald-700 border-emerald-200">
-                            <FiSlack className="h-3 w-3 mr-1" />
+                            <MessageSquare className="h-3 w-3 mr-1" />
                             Sent
                           </Badge>
                         )}
-                        {isExpanded ? <HiOutlineChevronUp className="h-4 w-4 text-muted-foreground" /> : <HiOutlineChevronDown className="h-4 w-4 text-muted-foreground" />}
+                        {isExpanded ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
                       </div>
                     </div>
                     <p className="text-xs text-muted-foreground">{formatTimestamp(update?.generated_at ?? '')} -- {update?.overall_summary?.completion_percentage ?? 0}% complete</p>
@@ -1204,7 +1201,7 @@ export default function Page() {
                                 <span className="text-xs text-foreground">{tc?.feature ?? '--'}</span>
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs text-red-500 line-through">{formatDate(tc?.original_date ?? '')}</span>
-                                  <HiOutlineChevronRight className="h-3 w-3 text-muted-foreground" />
+                                  <ChevronRight className="h-3 w-3 text-muted-foreground" />
                                   <span className="text-xs text-emerald-600">{formatDate(tc?.new_date ?? '')}</span>
                                   <Badge className={cn('text-xs', getSeverityColor(tc?.severity ?? ''))}>{tc?.severity ?? '--'}</Badge>
                                 </div>
@@ -1311,7 +1308,7 @@ export default function Page() {
           <h3 className="text-sm font-semibold text-foreground mb-4">lovable.dev Connection</h3>
           <div className="flex items-center gap-3 bg-white/50 rounded-xl p-4 border border-border/50">
             <div className="h-8 w-8 rounded-lg bg-emerald-50 flex items-center justify-center">
-              <HiOutlineSignal className="h-4 w-4 text-emerald-600" />
+              <Signal className="h-4 w-4 text-emerald-600" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-foreground">API Connection</p>
@@ -1324,7 +1321,7 @@ export default function Page() {
         {/* Slack Settings */}
         <div className={cn(GLASS_CARD, 'p-6')}>
           <div className="flex items-center gap-2 mb-4">
-            <FiSlack className="h-4 w-4 text-primary" />
+            <MessageSquare className="h-4 w-4 text-primary" />
             <h3 className="text-sm font-semibold text-foreground">Slack Integration</h3>
           </div>
           <div className="space-y-4">
@@ -1404,7 +1401,7 @@ export default function Page() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, hsl(210 20% 97%) 0%, hsl(220 25% 95%) 35%, hsl(200 20% 96%) 70%, hsl(230 15% 97%) 100%)' }}>
+      <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, hsl(210, 20%, 97%) 0%, hsl(220, 25%, 95%) 35%, hsl(200, 20%, 96%) 70%, hsl(230, 15%, 97%) 100%)' }}>
         {renderSidebar()}
 
         <div className={cn('min-h-screen transition-all duration-300 ease-in-out', sidebarOpen ? 'ml-60' : 'ml-0 md:ml-16')}>
