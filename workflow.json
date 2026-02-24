@@ -1,0 +1,91 @@
+{
+  "nodes": [
+    {
+      "id": "input_node",
+      "type": "Input",
+      "label": "User Query",
+      "nodeCategory": "input"
+    },
+    {
+      "id": "roadmap_coordinator",
+      "type": "Agent",
+      "label": "Roadmap Coordinator",
+      "nodeCategory": "agent",
+      "agent_id": "699d43ba84b11a9ffb6a147f",
+      "agent_type": "manager",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "managed_agents": [
+        "699d4377ab5c2a239c014eed",
+        "699d43a257d5fd468c9cf631"
+      ]
+    },
+    {
+      "id": "lovable_tracker",
+      "type": "Agent",
+      "label": "Lovable Tracker Agent",
+      "nodeCategory": "agent",
+      "agent_id": "699d4377ab5c2a239c014eed",
+      "agent_type": "sub-agent",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "temperature": 0.2
+    },
+    {
+      "id": "summary_risk_analyst",
+      "type": "Agent",
+      "label": "Summary & Risk Analyst",
+      "nodeCategory": "agent",
+      "agent_id": "699d43a257d5fd468c9cf631",
+      "agent_type": "sub-agent",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5",
+      "temperature": 0.4
+    },
+    {
+      "id": "stakeholder_reminder",
+      "type": "Agent",
+      "label": "Stakeholder Reminder Agent",
+      "nodeCategory": "agent",
+      "agent_id": "699d43d7b180522b55d44611",
+      "agent_type": "independent",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "tools": [
+        "SLACK_CHAT_POST_MESSAGE",
+        "SLACK_LIST_ALL_CHANNELS",
+        "SLACK_FIND_CHANNELS"
+      ]
+    },
+    {
+      "id": "output_node",
+      "type": "Output",
+      "label": "Output",
+      "nodeCategory": "end"
+    }
+  ],
+  "edges": [
+    {
+      "source": "input_node",
+      "target": "roadmap_coordinator"
+    },
+    {
+      "source": "roadmap_coordinator",
+      "target": "lovable_tracker"
+    },
+    {
+      "source": "roadmap_coordinator",
+      "target": "summary_risk_analyst"
+    },
+    {
+      "source": "roadmap_coordinator",
+      "target": "stakeholder_reminder"
+    },
+    {
+      "source": "stakeholder_reminder",
+      "target": "output_node"
+    }
+  ]
+}

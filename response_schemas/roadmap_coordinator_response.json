@@ -1,0 +1,116 @@
+{
+  "agent_name": "Roadmap Coordinator",
+  "agent_id": "699d43ba84b11a9ffb6a147f",
+  "description": "Orchestrates tracking and analysis sub-agents, aggregates lovable.dev change data with structured progress summaries, risk indicators, and stakeholder action items into a unified roadmap update",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "update_id": "string",
+    "generated_at": "string",
+    "project_name": "string",
+    "overall_summary": {
+      "completion_percentage": "number",
+      "status": "string",
+      "summary_text": "string"
+    },
+    "features": [
+      {
+        "name": "string",
+        "status": "string",
+        "progress": "number",
+        "last_updated": "string",
+        "changes": "string",
+        "details": "string"
+      }
+    ],
+    "timeline_changes": [
+      {
+        "feature": "string",
+        "original_date": "string",
+        "new_date": "string",
+        "reason": "string",
+        "impact": "string",
+        "severity": "string"
+      }
+    ],
+    "dependencies": [
+      {
+        "from_feature": "string",
+        "to_feature": "string",
+        "status": "string",
+        "is_blocker": "boolean"
+      }
+    ],
+    "risk_indicators": [
+      {
+        "title": "string",
+        "severity": "string",
+        "description": "string",
+        "mitigation": "string"
+      }
+    ],
+    "action_items": [
+      {
+        "task": "string",
+        "assignee": "string",
+        "priority": "string",
+        "due_date": "string"
+      }
+    ]
+  },
+  "example_response": {
+    "update_id": "sample string",
+    "generated_at": "sample string",
+    "project_name": "sample string",
+    "overall_summary": {
+      "completion_percentage": 0,
+      "status": "sample string",
+      "summary_text": "sample string"
+    },
+    "features": [
+      {
+        "name": "sample string",
+        "status": "sample string",
+        "progress": 0,
+        "last_updated": "sample string",
+        "changes": "sample string",
+        "details": "sample string"
+      }
+    ],
+    "timeline_changes": [
+      {
+        "feature": "sample string",
+        "original_date": "sample string",
+        "new_date": "sample string",
+        "reason": "sample string",
+        "impact": "sample string",
+        "severity": "sample string"
+      }
+    ],
+    "dependencies": [
+      {
+        "from_feature": "sample string",
+        "to_feature": "sample string",
+        "status": "sample string",
+        "is_blocker": false
+      }
+    ],
+    "risk_indicators": [
+      {
+        "title": "sample string",
+        "severity": "sample string",
+        "description": "sample string",
+        "mitigation": "sample string"
+      }
+    ],
+    "action_items": [
+      {
+        "task": "sample string",
+        "assignee": "sample string",
+        "priority": "sample string",
+        "due_date": "sample string"
+      }
+    ]
+  }
+}

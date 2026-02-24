@@ -1,0 +1,32 @@
+{
+  "agent_name": "Stakeholder Reminder Agent",
+  "agent_id": "699d43d7b180522b55d44611",
+  "description": "Sends approved roadmap summaries and targeted task reminders to stakeholders via Slack channels after user review",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "delivery_status": "string",
+    "messages_sent": [
+      {
+        "channel": "string",
+        "message_type": "string",
+        "status": "string",
+        "preview": "string"
+      }
+    ],
+    "summary": "string"
+  },
+  "example_response": {
+    "delivery_status": "sample string",
+    "messages_sent": [
+      {
+        "channel": "sample string",
+        "message_type": "sample string",
+        "status": "sample string",
+        "preview": "sample string"
+      }
+    ],
+    "summary": "sample string"
+  }
+}

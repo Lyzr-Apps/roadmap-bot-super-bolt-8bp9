@@ -1,0 +1,57 @@
+{
+  "app_name": "ProductPulse",
+  "created_at": "2026-02-24",
+  "agents": {
+    "lovable_tracker": {
+      "agent_id": "699d4377ab5c2a239c014eed",
+      "name": "Lovable Tracker Agent",
+      "type": "sub-agent",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "response_schema_file": "response_schemas/lovable_tracker_agent_response.json"
+    },
+    "summary_risk_analyst": {
+      "agent_id": "699d43a257d5fd468c9cf631",
+      "name": "Summary & Risk Analyst Agent",
+      "type": "sub-agent",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5",
+      "temperature": 0.4,
+      "response_schema_file": "response_schemas/summary_risk_analyst_agent_response.json"
+    },
+    "roadmap_coordinator": {
+      "agent_id": "699d43ba84b11a9ffb6a147f",
+      "name": "Roadmap Coordinator",
+      "type": "manager",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "managed_agents": [
+        "699d4377ab5c2a239c014eed",
+        "699d43a257d5fd468c9cf631"
+      ],
+      "response_schema_file": "response_schemas/roadmap_coordinator_response.json"
+    },
+    "stakeholder_reminder": {
+      "agent_id": "699d43d7b180522b55d44611",
+      "name": "Stakeholder Reminder Agent",
+      "type": "independent",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "tools": [
+        "SLACK_CHAT_POST_MESSAGE",
+        "SLACK_LIST_ALL_CHANNELS",
+        "SLACK_FIND_CHANNELS"
+      ],
+      "response_schema_file": "response_schemas/stakeholder_reminder_agent_response.json"
+    }
+  },
+  "agent_ids": {
+    "699d4377ab5c2a239c014eed": "Lovable Tracker Agent",
+    "699d43a257d5fd468c9cf631": "Summary & Risk Analyst Agent",
+    "699d43ba84b11a9ffb6a147f": "Roadmap Coordinator",
+    "699d43d7b180522b55d44611": "Stakeholder Reminder Agent"
+  }
+}

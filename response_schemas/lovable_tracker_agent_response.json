@@ -1,0 +1,60 @@
+{
+  "agent_name": "Lovable Tracker Agent",
+  "agent_id": "699d4377ab5c2a239c014eed",
+  "description": "Fetches and parses recent project updates, feature changes, and timeline modifications from lovable.dev API",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "features": [
+      {
+        "name": "string",
+        "status": "string",
+        "progress": "number",
+        "last_updated": "string",
+        "changes": "string"
+      }
+    ],
+    "timeline_changes": [
+      {
+        "feature": "string",
+        "original_date": "string",
+        "new_date": "string",
+        "reason": "string"
+      }
+    ],
+    "raw_updates": [
+      {
+        "timestamp": "string",
+        "type": "string",
+        "description": "string"
+      }
+    ]
+  },
+  "example_response": {
+    "features": [
+      {
+        "name": "sample string",
+        "status": "sample string",
+        "progress": 0,
+        "last_updated": "sample string",
+        "changes": "sample string"
+      }
+    ],
+    "timeline_changes": [
+      {
+        "feature": "sample string",
+        "original_date": "sample string",
+        "new_date": "sample string",
+        "reason": "sample string"
+      }
+    ],
+    "raw_updates": [
+      {
+        "timestamp": "sample string",
+        "type": "sample string",
+        "description": "sample string"
+      }
+    ]
+  }
+}
